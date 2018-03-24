@@ -1,15 +1,14 @@
 package com.awareness.ApiWithJWT.model;
 
 
+import com.awareness.ApiWithJWT.model.overalls.DateAudit;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,7 +17,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = {"surname"}),
         @UniqueConstraint(columnNames = {"email"})
 })
-public class User extends DateAudit{
+public class User extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

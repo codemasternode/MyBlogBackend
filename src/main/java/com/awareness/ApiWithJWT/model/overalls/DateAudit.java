@@ -1,4 +1,4 @@
-package com.awareness.ApiWithJWT.model;
+package com.awareness.ApiWithJWT.model.overalls;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

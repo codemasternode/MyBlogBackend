@@ -1,5 +1,7 @@
-package com.awareness.ApiWithJWT.model;
+package com.awareness.ApiWithJWT.model.blog;
 
+
+import com.awareness.ApiWithJWT.model.overalls.Post;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -7,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "blog_posts")
-public class BlogPost extends Post{
+public class BlogPost extends Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,12 +17,12 @@ public class BlogPost extends Post{
 
 
     @OneToMany(mappedBy = "tutorials")
-    private Set<Comment> comments = new HashSet<>();
+    private Set<BlogComment> comments = new HashSet<>();
 
     public BlogPost() {
     }
 
-    public BlogPost(String title, String imageUrl, String content, Set<Comment> comments) {
+    public BlogPost(String title, String imageUrl, String content, Set<BlogComment> comments) {
         super(title, imageUrl, content);
         this.comments = comments;
     }

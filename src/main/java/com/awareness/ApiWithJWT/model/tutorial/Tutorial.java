@@ -1,5 +1,7 @@
-package com.awareness.ApiWithJWT.model;
+package com.awareness.ApiWithJWT.model.tutorial;
 
+
+import com.awareness.ApiWithJWT.model.overalls.Post;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -7,21 +9,20 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tutorials")
-public class Tutorial extends Post{
+public class Tutorial extends Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToMany(mappedBy = "tutorials")
-    private Set<Comment> comments = new HashSet<>();
+    private Set<TutorialComment> comments = new HashSet<>();
 
     public Tutorial() {
     }
 
-    public Tutorial(String title, String imageUrl, String content, Set<Comment> comments) {
+    public Tutorial(String title, String imageUrl, String content) {
         super(title, imageUrl, content);
-        this.comments = comments;
     }
 
     public Long getId() {
@@ -32,11 +33,11 @@ public class Tutorial extends Post{
         this.id = id;
     }
 
-    public Set<Comment> getComments() {
+    public Set<TutorialComment> getComments() {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(Set<TutorialComment> comments) {
         this.comments = comments;
     }
 }
