@@ -45,6 +45,9 @@ public class User extends DateAudit{
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private Set<UserRole> userRole = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Comment> comments = new HashSet<>();
+
     private boolean enabled = true;
 
     public User() {
@@ -55,6 +58,22 @@ public class User extends DateAudit{
         this.surname = surname;
         this.email = email;
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getName() {
@@ -95,5 +114,17 @@ public class User extends DateAudit{
 
     public void setUserRole(Set<UserRole> userRole) {
         this.userRole = userRole;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
 }

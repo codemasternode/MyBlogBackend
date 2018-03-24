@@ -1,4 +1,5 @@
 package com.awareness.ApiWithJWT.model;
 
-public class AddToCollection {
+public class AddToCollection<T> {
+
 }
