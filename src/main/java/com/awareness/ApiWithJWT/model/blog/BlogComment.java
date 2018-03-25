@@ -16,6 +16,9 @@ public class BlogComment extends Comment {
     @ManyToOne
     private BlogPost blogPost;
 
+    public BlogComment() {
+    }
+
     public BlogComment(User user, String content, BlogPost blogPost) {
         super(user, content);
         this.blogPost = blogPost;

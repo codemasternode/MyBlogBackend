@@ -17,6 +17,9 @@ public abstract class Comment implements Serializable{
     @NotBlank
     private String content;
 
+    public Comment() {
+    }
+
     public Comment(User user, String content) {
         this.user = user;
         this.content = content;

@@ -16,6 +16,9 @@ public class TutorialCategory extends Category{
     @OneToMany
     private Set<Tutorial> tutorialSet = new HashSet<>();
 
+    public TutorialCategory() {
+    }
+
     public TutorialCategory(String name) {
         super(name);
     }

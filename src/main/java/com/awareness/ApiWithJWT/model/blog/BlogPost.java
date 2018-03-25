@@ -22,6 +22,9 @@ public class BlogPost extends Post {
     @JoinColumn(name = "blog_category_id")
     private BlogCategory blogCategory;
 
+    public BlogPost() {
+    }
+
     public BlogPost(String title, String imageUrl, String content, BlogCategory blogCategory) {
         super(title, imageUrl, content);
         this.blogCategory = blogCategory;

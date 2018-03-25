@@ -15,6 +15,9 @@ public class TutorialComment extends Comment {
     @ManyToOne
     private Tutorial tutorial;
 
+    public TutorialComment() {
+    }
+
     public TutorialComment(User user, String content, Tutorial tutorial) {
         super(user, content);
         this.tutorial = tutorial;

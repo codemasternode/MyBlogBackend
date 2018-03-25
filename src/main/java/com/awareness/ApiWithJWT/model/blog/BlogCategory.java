@@ -15,8 +15,11 @@ public class BlogCategory extends Category{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "blogCategory")
     private Set<BlogPost> tutorialSet = new HashSet<>();
+
+    public BlogCategory() {
+    }
 
     public BlogCategory(String name) {
         super(name);

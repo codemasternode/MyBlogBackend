@@ -12,6 +12,9 @@ public abstract class Category implements Serializable{
     @Size(max = 30)
     private String name;
 
+    public Category() {
+    }
+
     public Category(String name) {
         this.name = name;
     }
