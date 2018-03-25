@@ -15,15 +15,39 @@ public class BlogPost extends Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-    @OneToMany(mappedBy = "tutorials")
+    @OneToMany(mappedBy = "blogPost")
     private Set<BlogComment> comments = new HashSet<>();
 
-    public BlogPost() {
+    @ManyToOne
+    @JoinColumn(name = "blog_category_id")
+    private BlogCategory blogCategory;
+
+    public BlogPost(String title, String imageUrl, String content, BlogCategory blogCategory) {
+        super(title, imageUrl, content);
+        this.blogCategory = blogCategory;
     }
 
-    public BlogPost(String title, String imageUrl, String content, Set<BlogComment> comments) {
-        super(title, imageUrl, content);
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<BlogComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<BlogComment> comments) {
         this.comments = comments;
+    }
+
+    public BlogCategory getBlogCategory() {
+        return blogCategory;
+    }
+
+    public void setBlogCategory(BlogCategory blogCategory) {
+        this.blogCategory = blogCategory;
     }
 }

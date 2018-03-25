@@ -1,7 +1,10 @@
 package com.awareness.ApiWithJWT.model;
 
 
+import com.awareness.ApiWithJWT.model.blog.BlogComment;
+import com.awareness.ApiWithJWT.model.overalls.Comment;
 import com.awareness.ApiWithJWT.model.overalls.DateAudit;
+import com.awareness.ApiWithJWT.model.tutorial.TutorialComment;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -11,7 +14,7 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+@Entity(name = "user")
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"name"}),
         @UniqueConstraint(columnNames = {"surname"}),
@@ -30,7 +33,6 @@ public class User extends DateAudit {
     @Size(max = 30)
     private String surname;
 
-
     @NotBlank
     @Email
     @Size(max = 50)
@@ -41,22 +43,27 @@ public class User extends DateAudit {
     @Size(min = 6, max = 35)
     private String password;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private Set<UserRole> userRole = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Comment> comments = new HashSet<>();
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<BlogComment> blogComments = new HashSet<>();
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<TutorialComment> tutorialComments = new HashSet<>();
 
     private boolean enabled = true;
 
     public User() {
     }
 
-    public User(String name, String surname, String email, String password) {
+    public User(String name, String surname,  String email, String password, Set<UserRole> userRole, boolean enabled) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.userRole = userRole;
+        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -65,14 +72,6 @@ public class User extends DateAudit {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public String getName() {
@@ -115,15 +114,27 @@ public class User extends DateAudit {
         this.userRole = userRole;
     }
 
-    public Set<Comment> getComments() {
-        return comments;
+    public Set<BlogComment> getBlogComments() {
+        return blogComments;
     }
 
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
+    public void setBlogComments(Set<BlogComment> blogComments) {
+        this.blogComments = blogComments;
     }
 
-    public void addComment(Comment comment) {
-        this.comments.add(comment);
+    public Set<TutorialComment> getTutorialComments() {
+        return tutorialComments;
+    }
+
+    public void setTutorialComments(Set<TutorialComment> tutorialComments) {
+        this.tutorialComments = tutorialComments;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

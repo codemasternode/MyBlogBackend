@@ -15,14 +15,18 @@ public class Tutorial extends Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "tutorials")
+    @OneToMany(mappedBy = "tutorial")
     private Set<TutorialComment> comments = new HashSet<>();
+
+    @ManyToOne
+    private TutorialCategory tutorialCategory;
 
     public Tutorial() {
     }
 
-    public Tutorial(String title, String imageUrl, String content) {
+    public Tutorial(String title, String imageUrl, String content, TutorialCategory tutorialCategory) {
         super(title, imageUrl, content);
+        this.tutorialCategory = tutorialCategory;
     }
 
     public Long getId() {
