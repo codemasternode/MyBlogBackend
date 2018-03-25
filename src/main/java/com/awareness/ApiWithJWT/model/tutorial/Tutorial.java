@@ -15,10 +15,11 @@ public class Tutorial extends Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "tutorial")
+    @OneToMany(mappedBy = "tutorial",cascade = CascadeType.ALL)
     private Set<TutorialComment> comments = new HashSet<>();
 
     @ManyToOne
+    @JoinColumn(name = "tutorial_category_id")
     private TutorialCategory tutorialCategory;
 
     public Tutorial() {

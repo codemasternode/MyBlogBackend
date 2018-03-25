@@ -15,7 +15,7 @@ public class BlogCategory extends Category{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "blogCategory")
+    @OneToMany(mappedBy = "blogCategory",cascade = CascadeType.ALL)
     private Set<BlogPost> tutorialSet = new HashSet<>();
 
     public BlogCategory() {

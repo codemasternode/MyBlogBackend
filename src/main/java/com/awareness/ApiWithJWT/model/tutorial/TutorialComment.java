@@ -13,6 +13,7 @@ public class TutorialComment extends Comment {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "tutorial_id")
     private Tutorial tutorial;
 
     public TutorialComment() {

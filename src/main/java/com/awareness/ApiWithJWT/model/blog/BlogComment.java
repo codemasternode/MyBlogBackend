@@ -14,6 +14,7 @@ public class BlogComment extends Comment {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "blog_post_id")
     private BlogPost blogPost;
 
     public BlogComment() {

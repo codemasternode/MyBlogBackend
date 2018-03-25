@@ -1,4 +1,4 @@
-package com.awareness.ApiWithJWT.repositories;
+package com.awareness.ApiWithJWT.repositories.blog;
 
 import com.awareness.ApiWithJWT.model.blog.BlogCategory;
 import org.springframework.data.jpa.repository.JpaRepository;

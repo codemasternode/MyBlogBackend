@@ -15,7 +15,7 @@ public class BlogPost extends Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "blogPost")
+    @OneToMany(mappedBy = "blogPost",cascade = CascadeType.ALL)
     private Set<BlogComment> comments = new HashSet<>();
 
     @ManyToOne

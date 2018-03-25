@@ -13,7 +13,7 @@ public class TutorialCategory extends Category{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "tutorialCategory",cascade = CascadeType.ALL)
     private Set<Tutorial> tutorialSet = new HashSet<>();
 
     public TutorialCategory() {
