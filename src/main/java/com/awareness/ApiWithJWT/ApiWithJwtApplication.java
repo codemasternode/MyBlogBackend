@@ -74,7 +74,7 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		Set<UserRole> roleSet = new HashSet<>();
+		/*Set<UserRole> roleSet = new HashSet<>();
 		roleSet.add(new UserRole(Role.ADMIN_ROLE));
 		User user = new User("Marcin","Warzybok","email@em.com","1231231231",roleSet,true);
 		System.out.println("------------------------------------------------------------------------");
@@ -93,6 +93,6 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 		blogCommentRepo.save(blogComment);
 		TutorialComment tutorialComment = new TutorialComment(user,"Dobre to!!!!",tutorial);
 		tutorialCommentRepo.save(tutorialComment);
-
+*/
 	}
 }
