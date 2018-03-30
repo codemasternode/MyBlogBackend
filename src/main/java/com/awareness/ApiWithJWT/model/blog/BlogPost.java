@@ -12,7 +12,7 @@ import java.util.Set;
 public class BlogPost extends Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "blogPost",cascade = CascadeType.ALL)

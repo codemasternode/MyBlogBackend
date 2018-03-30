@@ -22,7 +22,7 @@ import java.util.Set;
 })
 public class User extends DateAudit {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -31,7 +31,7 @@ public class User extends DateAudit {
 
     @NotBlank
     @Size(max = 30)
-    private String surname;
+    private String username;
 
     @NotBlank
     @Email
@@ -43,7 +43,10 @@ public class User extends DateAudit {
     @Size(min = 6, max = 35)
     private String password;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<UserRole> userRole = new HashSet<>();
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
@@ -57,9 +60,9 @@ public class User extends DateAudit {
     public User() {
     }
 
-    public User(String name, String surname,  String email, String password, Set<UserRole> userRole, boolean enabled) {
+    public User(String name, String username,  String email, String password, boolean enabled) {
         this.name = name;
-        this.surname = surname;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.userRole = userRole;
@@ -82,12 +85,12 @@ public class User extends DateAudit {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

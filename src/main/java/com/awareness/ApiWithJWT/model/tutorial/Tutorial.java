@@ -12,10 +12,10 @@ import java.util.Set;
 public class Tutorial extends Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "tutorial",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tutorial",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<TutorialComment> comments = new HashSet<>();
 
     @ManyToOne

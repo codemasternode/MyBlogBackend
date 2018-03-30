@@ -29,6 +29,7 @@ import javax.annotation.PostConstruct;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -89,10 +90,10 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 		blogCategoryRepo.save(blogCategory);
 		BlogPost blogPost = new BlogPost("Jak zarabiać w IT","http://bog2.png","Zarabianie w IT jest bardzo trudne",blogCategory);
 		blogPostRepo.save(blogPost);
-		BlogComment blogComment = new BlogComment(user,"Ale gówno!!!",blogPost);
-		blogCommentRepo.save(blogComment);
-		TutorialComment tutorialComment = new TutorialComment(user,"Dobre to!!!!",tutorial);
-		tutorialCommentRepo.save(tutorialComment);
-*/
+
+		List<Tutorial> tutorialList = tutorialRepo.findAll();
+		for(Tutorial t:tutorialList){
+			System.out.println(t.getTitle() + "to jest tytuł");
+		}*/
 	}
 }

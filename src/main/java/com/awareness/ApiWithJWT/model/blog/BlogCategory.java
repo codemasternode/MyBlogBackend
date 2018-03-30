@@ -12,7 +12,7 @@ import java.util.Set;
 public class BlogCategory extends Category{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "blogCategory",cascade = CascadeType.ALL)
