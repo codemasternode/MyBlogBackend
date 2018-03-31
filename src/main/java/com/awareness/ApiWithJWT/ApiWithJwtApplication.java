@@ -1,6 +1,7 @@
 package com.awareness.ApiWithJWT;
 
-import com.awareness.ApiWithJWT.model.Role;
+
+import com.awareness.ApiWithJWT.model.RoleName;
 import com.awareness.ApiWithJWT.model.User;
 import com.awareness.ApiWithJWT.model.UserRole;
 import com.awareness.ApiWithJWT.model.blog.BlogCategory;
@@ -9,6 +10,7 @@ import com.awareness.ApiWithJWT.model.blog.BlogPost;
 import com.awareness.ApiWithJWT.model.tutorial.Tutorial;
 import com.awareness.ApiWithJWT.model.tutorial.TutorialCategory;
 import com.awareness.ApiWithJWT.model.tutorial.TutorialComment;
+import com.awareness.ApiWithJWT.repositories.UserRoleRepo;
 import com.awareness.ApiWithJWT.repositories.blog.BlogCategoryRepo;
 import com.awareness.ApiWithJWT.repositories.blog.BlogCommentRepo;
 import com.awareness.ApiWithJWT.repositories.blog.BlogPostRepo;
@@ -28,9 +30,7 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import javax.annotation.PostConstruct;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TimeZone;
+import java.util.*;
 
 @SpringBootApplication
 @EntityScan(
@@ -58,6 +58,9 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 
 
 	@Autowired
+	private UserRoleRepo userRoleRepo;
+
+	@Autowired
 	private BlogCommentRepo blogCommentRepo;
 
 	@Autowired
@@ -74,7 +77,7 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		Set<UserRole> roleSet = new HashSet<>();
+		/*Set<UserRole> roleSet = new HashSet<>();
 		roleSet.add(new UserRole(Role.ADMIN_ROLE));
 		User user = new User("Marcin","Warzybok","email@em.com","1231231231",roleSet,true);
 		System.out.println("------------------------------------------------------------------------");
@@ -89,10 +92,11 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 		blogCategoryRepo.save(blogCategory);
 		BlogPost blogPost = new BlogPost("Jak zarabiać w IT","http://bog2.png","Zarabianie w IT jest bardzo trudne",blogCategory);
 		blogPostRepo.save(blogPost);
-		BlogComment blogComment = new BlogComment(user,"Ale gówno!!!",blogPost);
-		blogCommentRepo.save(blogComment);
-		TutorialComment tutorialComment = new TutorialComment(user,"Dobre to!!!!",tutorial);
-		tutorialCommentRepo.save(tutorialComment);
 
+		List<Tutorial> tutorialList = tutorialRepo.findAll();
+		for(Tutorial t:tutorialList){
+			System.out.println(t.getTitle() + "to jest tytuł");
+		}*/
+		//Optional<UserRole> userRole = userRoleRepo.findByRole(RoleName.ROLE_USER);
 	}
 }

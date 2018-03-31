@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "tutorial_categories")
 public class TutorialCategory extends Category{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "tutorialCategory",cascade = CascadeType.ALL)

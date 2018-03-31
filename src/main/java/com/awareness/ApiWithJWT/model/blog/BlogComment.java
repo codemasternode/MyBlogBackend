@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "blog_comments")
 public class BlogComment extends Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

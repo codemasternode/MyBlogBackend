@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "tutorial_comments")
 public class TutorialComment extends Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
