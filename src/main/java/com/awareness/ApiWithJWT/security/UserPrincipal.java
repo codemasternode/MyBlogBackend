@@ -25,14 +25,17 @@ public class UserPrincipal implements UserDetails {
     @JsonIgnore
     private String password;
 
+    private boolean enabled = true;
+
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id,String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id,String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities,boolean enabled) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+        this.enabled = enabled;
     }
 
     public static UserPrincipal create(User user){
@@ -45,7 +48,8 @@ public class UserPrincipal implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities
+                authorities,
+                user.isEnabled()
         );
     }
 
@@ -65,6 +69,7 @@ public class UserPrincipal implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
+
 
     @Override
     public String getPassword() {

@@ -14,10 +14,10 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "user")
+@Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"name"}),
-        @UniqueConstraint(columnNames = {"surname"}),
+        @UniqueConstraint(columnNames = {"username"}),
         @UniqueConstraint(columnNames = {"email"})
 })
 public class User extends DateAudit {
@@ -40,7 +40,7 @@ public class User extends DateAudit {
     private String email;
 
     @NotBlank
-    @Size(min = 6, max = 35)
+    @Size(max = 35)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -60,12 +60,11 @@ public class User extends DateAudit {
     public User() {
     }
 
-    public User(String name, String username,  String email, String password, boolean enabled) {
+    public User(String name, String username,  String email, String password) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.userRole = userRole;
         this.enabled = enabled;
     }
 

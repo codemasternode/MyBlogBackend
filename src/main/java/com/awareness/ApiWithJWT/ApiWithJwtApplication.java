@@ -1,6 +1,7 @@
 package com.awareness.ApiWithJWT;
 
-import com.awareness.ApiWithJWT.model.Role;
+
+import com.awareness.ApiWithJWT.model.RoleName;
 import com.awareness.ApiWithJWT.model.User;
 import com.awareness.ApiWithJWT.model.UserRole;
 import com.awareness.ApiWithJWT.model.blog.BlogCategory;
@@ -9,6 +10,7 @@ import com.awareness.ApiWithJWT.model.blog.BlogPost;
 import com.awareness.ApiWithJWT.model.tutorial.Tutorial;
 import com.awareness.ApiWithJWT.model.tutorial.TutorialCategory;
 import com.awareness.ApiWithJWT.model.tutorial.TutorialComment;
+import com.awareness.ApiWithJWT.repositories.UserRoleRepo;
 import com.awareness.ApiWithJWT.repositories.blog.BlogCategoryRepo;
 import com.awareness.ApiWithJWT.repositories.blog.BlogCommentRepo;
 import com.awareness.ApiWithJWT.repositories.blog.BlogPostRepo;
@@ -28,10 +30,7 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import javax.annotation.PostConstruct;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TimeZone;
+import java.util.*;
 
 @SpringBootApplication
 @EntityScan(
@@ -57,6 +56,9 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 	@Autowired
 	private BlogPostRepo blogPostRepo;
 
+
+	@Autowired
+	private UserRoleRepo userRoleRepo;
 
 	@Autowired
 	private BlogCommentRepo blogCommentRepo;
@@ -95,5 +97,6 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 		for(Tutorial t:tutorialList){
 			System.out.println(t.getTitle() + "to jest tytuł");
 		}*/
+		//Optional<UserRole> userRole = userRoleRepo.findByRole(RoleName.ROLE_USER);
 	}
 }

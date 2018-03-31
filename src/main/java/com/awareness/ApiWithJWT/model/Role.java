@@ -1,6 +1,8 @@
 package com.awareness.ApiWithJWT.model;
 
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,13 +14,15 @@ public class UserRole {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    @NaturalId
+    @Column(length = 60)
+    private RoleName name;
 
     public UserRole() {
     }
 
-    public UserRole(Role role) {
-        this.role = role;
+    public UserRole(RoleName name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -29,11 +33,11 @@ public class UserRole {
         this.id = id;
     }
 
-    public Role getRole() {
-        return role;
+    public RoleName getName() {
+        return name;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setName(RoleName name) {
+        this.name = name;
     }
 }

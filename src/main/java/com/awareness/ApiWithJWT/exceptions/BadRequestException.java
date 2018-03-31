@@ -1,4 +1,4 @@
-package com.example.polls.exception;
+package com.awareness.ApiWithJWT.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
