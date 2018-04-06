@@ -2,7 +2,6 @@ package com.awareness.ApiWithJWT.model;
 
 
 import com.awareness.ApiWithJWT.model.blog.BlogComment;
-import com.awareness.ApiWithJWT.model.overalls.Comment;
 import com.awareness.ApiWithJWT.model.overalls.DateAudit;
 import com.awareness.ApiWithJWT.model.tutorial.TutorialComment;
 import org.hibernate.annotations.NaturalId;
@@ -16,9 +15,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"name"}),
-        @UniqueConstraint(columnNames = {"username"}),
-        @UniqueConstraint(columnNames = {"email"})
+        @UniqueConstraint(columnNames = {
+                "username"
+        }),
+        @UniqueConstraint(columnNames = {
+                "email"
+        })
 })
 public class User extends DateAudit {
     @Id
@@ -26,46 +28,44 @@ public class User extends DateAudit {
     private Long id;
 
     @NotBlank
-    @Size(max = 20)
+    @Size(max = 40)
     private String name;
 
     @NotBlank
-    @Size(max = 30)
+    @Size(max = 20)
     private String username;
 
-    @NotBlank
-    @Email
-    @Size(max = 50)
     @NaturalId
+    @NotBlank
+    @Size(max = 40)
+    @Email
     private String email;
 
     @NotBlank
-    @Size(max = 35)
+    @Size(max = 100)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<UserRole> userRole = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<BlogComment> blogComments = new HashSet<>();
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<TutorialComment> tutorialComments = new HashSet<>();
 
-    private boolean enabled = true;
-
     public User() {
+
     }
 
-    public User(String name, String username,  String email, String password) {
+    public User(String name, String username, String email, String password) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -76,20 +76,20 @@ public class User extends DateAudit {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -108,12 +108,12 @@ public class User extends DateAudit {
         this.password = password;
     }
 
-    public Set<UserRole> getUserRole() {
-        return userRole;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setUserRole(Set<UserRole> userRole) {
-        this.userRole = userRole;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Set<BlogComment> getBlogComments() {
@@ -130,13 +130,5 @@ public class User extends DateAudit {
 
     public void setTutorialComments(Set<TutorialComment> tutorialComments) {
         this.tutorialComments = tutorialComments;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 }

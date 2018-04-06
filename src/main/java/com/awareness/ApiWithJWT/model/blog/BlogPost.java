@@ -25,8 +25,8 @@ public class BlogPost extends Post {
     public BlogPost() {
     }
 
-    public BlogPost(String title, String imageUrl, String content, BlogCategory blogCategory) {
-        super(title, imageUrl, content);
+    public BlogPost(String title, String imageUrl, String overview, String content, BlogCategory blogCategory) {
+        super(title, imageUrl, overview, content);
         this.blogCategory = blogCategory;
     }
 

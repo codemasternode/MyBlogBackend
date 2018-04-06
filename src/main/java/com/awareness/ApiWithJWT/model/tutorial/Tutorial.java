@@ -25,8 +25,8 @@ public class Tutorial extends Post {
     public Tutorial() {
     }
 
-    public Tutorial(String title, String imageUrl, String content, TutorialCategory tutorialCategory) {
-        super(title, imageUrl, content);
+    public Tutorial(String title, String imageUrl, String overview, String content, TutorialCategory tutorialCategory) {
+        super(title, imageUrl, overview, content);
         this.tutorialCategory = tutorialCategory;
     }
 

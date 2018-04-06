@@ -19,14 +19,14 @@ public class JwtTokenProvider {
     private String jwtSecret;
 
     @Value("${app.jwtExpirationInMs}")
-    private String expirationInMs;
+    private int jwtExpirationInMs;
 
     public String generateToken(Authentication authentication) {
 
         UserPrincipal userDetails = (UserPrincipal) authentication.getPrincipal();
 
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + expirationInMs);
+        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
         return Jwts.builder()
                 .setSubject(Long.toString(userDetails.getId()))

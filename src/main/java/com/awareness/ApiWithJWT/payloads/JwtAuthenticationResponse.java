@@ -24,3 +24,4 @@ public class JwtAuthenticationResponse {
         this.tokenType = tokenType;
     }
 }
+
