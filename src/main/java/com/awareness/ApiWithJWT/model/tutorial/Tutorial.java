@@ -2,6 +2,7 @@ package com.awareness.ApiWithJWT.model.tutorial;
 
 
 import com.awareness.ApiWithJWT.model.overalls.Post;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -44,5 +45,13 @@ public class Tutorial extends Post {
 
     public void setComments(Set<TutorialComment> comments) {
         this.comments = comments;
+    }
+
+    public TutorialCategory getTutorialCategory() {
+        return tutorialCategory;
+    }
+
+    public void setTutorialCategory(TutorialCategory tutorialCategory) {
+        this.tutorialCategory = tutorialCategory;
     }
 }
