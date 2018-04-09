@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TutorialCategoryRepo extends JpaRepository<TutorialCategory,Long>{
+    TutorialCategory getByName(String java);
 }

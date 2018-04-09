@@ -2,6 +2,7 @@ package com.awareness.ApiWithJWT;
 
 
 
+import com.awareness.ApiWithJWT.model.blog.BlogCategory;
 import com.awareness.ApiWithJWT.model.tutorial.Tutorial;
 import com.awareness.ApiWithJWT.model.tutorial.TutorialCategory;
 import com.awareness.ApiWithJWT.repositories.RoleRepository;
@@ -93,9 +94,9 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 		for(Tutorial t:tutorialList){
 			System.out.println(t.getTitle() + "to jest tytuł");
 		}*/
-		/*
-		TutorialCategory tutorialCategory = new TutorialCategory("Java");
-		tutorialCategoryRepo.save(tutorialCategory);
+
+		TutorialCategory tutorialCategory = tutorialCategoryRepo.getByName("Java");
+		//tutorialCategoryRepo.save(tutorialCategory);
 		Tutorial tutorial = new Tutorial("Java, i co dalej?",
 				"https://ocs-pl.oktawave.com/v1/AUTH_2887234e-384a-4873-8bc5-405211db13a2/spidersweb/2014/08/Java.png",
 				"Na pewno część z was nie ma pomysłu na to co zrobić po opanowaniu podstaw Java. W tym wpisie " +
@@ -118,6 +119,7 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 						tutorialCategory
 				);
 		tutorialRepo.save(tutorial);
-		*/
+
+		BlogCategory blogCategory = new BlogCategory("Branża IT","white");
 	}
 }

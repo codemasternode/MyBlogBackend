@@ -4,6 +4,8 @@ import com.awareness.ApiWithJWT.model.overalls.Category;
 import com.awareness.ApiWithJWT.model.tutorial.Tutorial;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,15 +17,16 @@ public class BlogCategory extends Category{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     @OneToMany(mappedBy = "blogCategory",cascade = CascadeType.ALL)
     private Set<BlogPost> tutorialSet = new HashSet<>();
 
     public BlogCategory() {
     }
 
-    public BlogCategory(String name) {
-        super(name);
-        this.tutorialSet = tutorialSet;
+    public BlogCategory(String name, String color) {
+        super(name, color);
     }
 
     public Long getId() {
@@ -41,4 +44,6 @@ public class BlogCategory extends Category{
     public void setTutorialSet(Set<BlogPost> tutorialSet) {
         this.tutorialSet = tutorialSet;
     }
+
+
 }
