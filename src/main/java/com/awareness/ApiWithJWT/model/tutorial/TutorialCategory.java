@@ -4,6 +4,8 @@ import com.awareness.ApiWithJWT.model.overalls.Category;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,11 +19,12 @@ public class TutorialCategory extends Category{
     @OneToMany
     private Set<Tutorial> tutorialSet = new HashSet<>();
 
+
     public TutorialCategory() {
     }
 
-    public TutorialCategory(String name) {
-        super(name);
+    public TutorialCategory(String name, String color) {
+        super(name, color);
     }
 
     public Long getId() {
@@ -39,4 +42,6 @@ public class TutorialCategory extends Category{
     public void setTutorialSet(Set<Tutorial> tutorialSet) {
         this.tutorialSet = tutorialSet;
     }
+
+
 }

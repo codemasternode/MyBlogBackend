@@ -12,11 +12,15 @@ public abstract class Category implements Serializable{
     @Size(max = 30)
     private String name;
 
+    @NotBlank
+    private String color;
+
     public Category() {
     }
 
-    public Category(String name) {
+    public Category(@NotBlank @Size(max = 30) String name, @NotBlank String color) {
         this.name = name;
+        this.color = color;
     }
 
     public String getName() {
@@ -27,5 +31,11 @@ public abstract class Category implements Serializable{
         this.name = name;
     }
 
+    public String getColor() {
+        return color;
+    }
 
+    public void setColor(String color) {
+        this.color = color;
+    }
 }
