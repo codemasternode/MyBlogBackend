@@ -1,23 +1,19 @@
 package com.awareness.ApiWithJWT;
 
 
-import com.awareness.ApiWithJWT.model.RoleName;
-import com.awareness.ApiWithJWT.model.User;
-import com.awareness.ApiWithJWT.model.UserRole;
-import com.awareness.ApiWithJWT.model.blog.BlogCategory;
-import com.awareness.ApiWithJWT.model.blog.BlogComment;
-import com.awareness.ApiWithJWT.model.blog.BlogPost;
+
 import com.awareness.ApiWithJWT.model.tutorial.Tutorial;
 import com.awareness.ApiWithJWT.model.tutorial.TutorialCategory;
-import com.awareness.ApiWithJWT.model.tutorial.TutorialComment;
-import com.awareness.ApiWithJWT.repositories.UserRoleRepo;
+import com.awareness.ApiWithJWT.repositories.RoleRepository;
+import com.awareness.ApiWithJWT.repositories.UserRepository;
+
 import com.awareness.ApiWithJWT.repositories.blog.BlogCategoryRepo;
 import com.awareness.ApiWithJWT.repositories.blog.BlogCommentRepo;
 import com.awareness.ApiWithJWT.repositories.blog.BlogPostRepo;
 import com.awareness.ApiWithJWT.repositories.tutorial.TutorialCategoryRepo;
 import com.awareness.ApiWithJWT.repositories.tutorial.TutorialCommentRepo;
 import com.awareness.ApiWithJWT.repositories.tutorial.TutorialRepo;
-import com.awareness.ApiWithJWT.repositories.UserRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -42,7 +38,7 @@ import java.util.*;
 public class ApiWithJwtApplication implements CommandLineRunner{
 
 	@Autowired
-	private UserRepo userRepo;
+	private UserRepository userRepo;
 
 	@Autowired
 	private TutorialRepo tutorialRepo;
@@ -58,7 +54,7 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 
 
 	@Autowired
-	private UserRoleRepo userRoleRepo;
+	private RoleRepository userRoleRepo;
 
 	@Autowired
 	private BlogCommentRepo blogCommentRepo;
@@ -97,6 +93,31 @@ public class ApiWithJwtApplication implements CommandLineRunner{
 		for(Tutorial t:tutorialList){
 			System.out.println(t.getTitle() + "to jest tytuł");
 		}*/
-		//Optional<UserRole> userRole = userRoleRepo.findByRole(RoleName.ROLE_USER);
+		/*
+		TutorialCategory tutorialCategory = new TutorialCategory("Java");
+		tutorialCategoryRepo.save(tutorialCategory);
+		Tutorial tutorial = new Tutorial("Java, i co dalej?",
+				"https://ocs-pl.oktawave.com/v1/AUTH_2887234e-384a-4873-8bc5-405211db13a2/spidersweb/2014/08/Java.png",
+				"Na pewno część z was nie ma pomysłu na to co zrobić po opanowaniu podstaw Java. W tym wpisie " +
+						"chciałbym wam przybliżyć jak całe to środowisko wygląda na dzień obecny. Będzie również dużo " +
+						"przemyśleń na temat innych języków takich jak np. JavaScript z bogatym środowiskiem nodejs.",
+				"Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse " +
+						"a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. " +
+						"Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, " +
+						"convallis ac, laoreet enim. Phasellus fermentum in, dolor. Pellentesque facilisis. " +
+						"Nulla imperdiet sit amet magna. Vestibulum dapibus, mauris nec malesuada fames ac turpis velit," +
+						" rhoncus eu, luctus et interdum adipiscing wisi. Aliquam erat ac ipsum. Integer aliquam purus. " +
+						"Quisque lorem tortor fringilla sed, vestibulum id, eleifend justo vel bibendum sapien massa ac " +
+						"turpis faucibus orci luctus non, consectetuer lobortis quis, varius in, purus. Integer ultrices" +
+						" posuere cubilia Curae, Nulla ipsum dolor lacus, suscipit adipiscing. Cum sociis natoque penatibus " +
+						"et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales " +
+						"lectus blandit eu, tempor diam pede cursus vitae, ultricies eu, faucibus quis, porttitor eros " +
+						"cursus lectus, pellentesque eget, bibendum a, gravida ullamcorper quam. Nullam viverra consectetuer." +
+						" Quisque cursus et, porttitor risus. Aliquam sem. In hendrerit nulla quam nunc, accumsan congue. " +
+						"Lorem ipsum primis in nibh vel risus. Sed vel lectus. Ut sagittis, ipsum dolor quam.",
+						tutorialCategory
+				);
+		tutorialRepo.save(tutorial);
+		*/
 	}
 }

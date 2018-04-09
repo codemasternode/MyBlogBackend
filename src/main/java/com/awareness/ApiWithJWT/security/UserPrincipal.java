@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
@@ -25,22 +26,21 @@ public class UserPrincipal implements UserDetails {
     @JsonIgnore
     private String password;
 
-    private boolean enabled = true;
-
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id,String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities,boolean enabled) {
+    public UserPrincipal(Long id, String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
-        this.enabled = enabled;
     }
 
-    public static UserPrincipal create(User user){
-        List<GrantedAuthority> authorities = user.getUserRole().stream().map( userRole ->
-        new SimpleGrantedAuthority(userRole.getRole().name())).collect(Collectors.toList());
+    public static UserPrincipal create(User user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
+                new SimpleGrantedAuthority(role.getName().name())
+        ).collect(Collectors.toList());
 
         return new UserPrincipal(
                 user.getId(),
@@ -48,8 +48,7 @@ public class UserPrincipal implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities,
-                user.isEnabled()
+                authorities
         );
     }
 
@@ -66,38 +65,51 @@ public class UserPrincipal implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public String getUsername() {
+        return username;
     }
-
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
-    public String getUsername() {
-        return null;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserPrincipal that = (UserPrincipal) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.awareness.ApiWithJWT.model.tutorial;
 
 import com.awareness.ApiWithJWT.model.overalls.Category;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,7 +14,7 @@ public class TutorialCategory extends Category{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "tutorialCategory",cascade = CascadeType.ALL)
+    @OneToMany
     private Set<Tutorial> tutorialSet = new HashSet<>();
 
     public TutorialCategory() {
