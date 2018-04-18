@@ -18,7 +18,7 @@ public abstract class Category implements Serializable{
     public Category() {
     }
 
-    public Category(@NotBlank @Size(max = 30) String name, @NotBlank String color) {
+    public Category( String name, String color) {
         this.name = name;
         this.color = color;
     }
